@@ -1,8 +1,12 @@
+import Link from "next/link";
 import styled from "styled-components";
 
 export default function Home() {
   return (
     <HomeWrapper>
+      <Link href="/add">
+        <a>+</a>
+      </Link>
       <SpendList>
         <SpendItem>
           <Infos>
