@@ -1,5 +1,5 @@
-import Link from "next/link";
-import styled from "styled-components";
+import Link from 'next/link'
+import styled from 'styled-components'
 
 export default function Home() {
   return (
@@ -27,41 +27,41 @@ export default function Home() {
         <CalculatedBudget>20€</CalculatedBudget>
       </Footer>
     </HomeWrapper>
-  );
+  )
 }
 
 const HomeWrapper = styled.main`
   height: 100vh;
-`;
+`
 
 const Infos = styled.div`
   display: flex;
   align-items: center;
-`;
+`
 
 const Footer = styled.footer`
   position: fixed;
   bottom: 0;
   border-top: 2px solid black;
   width: 100vw;
-`;
+`
 
 const CalculatedBudget = styled.p`
   text-align: center;
   color: green;
   font-size: 2em;
-`;
+`
 
 const Money = styled.p`
-  color: ${({ isMe }) => (isMe ? "green" : "red")};
-`;
+  color: ${({ isMe }) => (isMe ? 'green' : 'red')};
+`
 
 const SpendItem = styled.li`
   border: 1px solid black;
   margin: 5px 0;
-`;
+`
 
 const SpendList = styled.ul`
   list-style-type: none;
   padding: 0;
-`;
+`
