@@ -6,6 +6,10 @@ import { useState } from 'react'
 export default function Add() {
   const router = useRouter()
 
+  const [moneyFor, setMoneyFor] = useState('')
+  const [amountOfMoney, setAmountOfMoney] = useState(0)
+  const [payDate, seetPayDate] = useState('')
+
   const [splits, setSplit] = useState([])
 
   function addNewSplit() {
@@ -59,13 +63,26 @@ export default function Add() {
   return (
     <Form onSubmit={saveSpend}>
       <label>Ausgabe für:</label>
-      <input type="text"></input>
+      <input
+        type="text"
+        value={moneyFor}
+        onChange={({ target: { value } }) => setMoneyFor(value)}
+      ></input>
 
       <label>Gesamtkosten:</label>
-      <input type="number" min={1}></input>
+      <input
+        type="number"
+        min={1}
+        value={amountOfMoney}
+        onChange={({ target: { value } }) => setAmountOfMoney(value)}
+      ></input>
 
       <label>Wann:</label>
-      <input type="date"></input>
+      <input
+        type="date"
+        value={payDate}
+        onChange={({ target: { value } }) => seetPayDate(value)}
+      ></input>
 
       <h2>Aufteilung</h2>
       <ul>
