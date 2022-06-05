@@ -23,6 +23,17 @@ export default function Add() {
     setSplit(updatedSplit)
   }
 
+  function handleOnChangeNames(id, nameValue) {
+    const updatedSplit = splits.map((split) => {
+      if (split.id === id) {
+        return { ...split, nameValue }
+      } else {
+        return split
+      }
+    })
+    setSplit(updatedSplit)
+  }
+
   return (
     <Form onSubmit={saveSpend}>
       <label>Ausgabe für:</label>
@@ -39,7 +50,15 @@ export default function Add() {
         {splits.map((split) => {
           return (
             <SplitItem key={split.id}>
-              <select name="names" id="name" value={split.nameVaule}>
+              <select
+                name="names"
+                id="name"
+                value={split.nameVaule}
+                defaultValue={split.nameValue}
+                onChange={({ target: { value } }) =>
+                  handleOnChangeNames(split.id, value)
+                }
+              >
                 <option value="martin">Martin</option>
                 <option value="jana">Jana</option>
                 <option value="lene">Lene</option>
