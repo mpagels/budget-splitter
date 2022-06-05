@@ -45,6 +45,17 @@ export default function Add() {
     setSplit(updatedSplit)
   }
 
+  function handleOnChangeMoney(id, moneyValue) {
+    const updatedSplit = splits.map((split) => {
+      if (split.id === id) {
+        return { ...split, moneyValue }
+      } else {
+        return split
+      }
+    })
+    setSplit(updatedSplit)
+  }
+
   return (
     <Form onSubmit={saveSpend}>
       <label>Ausgabe für:</label>
@@ -82,7 +93,14 @@ export default function Add() {
                   handleOnChangeNumber(split.id, value)
                 }
               ></input>
-              <select name="whichMoney" id="money">
+              <select
+                name="whichMoney"
+                id="money"
+                value={split.moneyValue}
+                onChange={({ target: { value } }) =>
+                  handleOnChangeMoney(split.id, value)
+                }
+              >
                 <option value="martin">Martin</option>
                 <option value="jana">Jana</option>
                 <option value="together">gemeinsam</option>
