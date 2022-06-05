@@ -17,6 +17,12 @@ export default function Add() {
     }
     setSplit([...splits, newSplit])
   }
+
+  function deleteSplit(id) {
+    const updatedSplit = splits.filter((split) => split.id !== id)
+    setSplit(updatedSplit)
+  }
+
   return (
     <Form onSubmit={saveSpend}>
       <label>Ausgabe für:</label>
@@ -44,6 +50,9 @@ export default function Add() {
                 <option value="Jana">Jana</option>
                 <option value="together">gemeinsam</option>
               </select>
+              <button type="button" onClick={() => deleteSplit(split.id)}>
+                X
+              </button>
             </SplitItem>
           )
         })}
