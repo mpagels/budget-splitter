@@ -12,7 +12,7 @@ export default function Add() {
     const newSplit = {
       id: nanoid(),
       nameValue: 'martin',
-      number: 1,
+      number: 0,
       moneyValue: 'martin',
     }
     setSplit([...splits, newSplit])
@@ -27,6 +27,17 @@ export default function Add() {
     const updatedSplit = splits.map((split) => {
       if (split.id === id) {
         return { ...split, nameValue }
+      } else {
+        return split
+      }
+    })
+    setSplit(updatedSplit)
+  }
+
+  function handleOnChangeNumber(id, number) {
+    const updatedSplit = splits.map((split) => {
+      if (split.id === id) {
+        return { ...split, number }
       } else {
         return split
       }
@@ -63,7 +74,14 @@ export default function Add() {
                 <option value="jana">Jana</option>
                 <option value="lene">Lene</option>
               </select>
-              <input type="number" min={1}></input>
+              <input
+                type="number"
+                min={1}
+                value={split.number}
+                onChange={({ target: { value } }) =>
+                  handleOnChangeNumber(split.id, value)
+                }
+              ></input>
               <select name="whichMoney" id="money">
                 <option value="martin">Martin</option>
                 <option value="jana">Jana</option>
