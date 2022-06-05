@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { nanoid } from 'nanoid'
 import { useState } from 'react'
 
-export default function Add() {
+export default function Add({ addSpend }) {
   const router = useRouter()
 
   const [moneyFor, setMoneyFor] = useState('')
@@ -130,6 +130,17 @@ export default function Add() {
 
   function saveSpend(event) {
     event.preventDefault()
+
+    const newSpend = {
+      id: nanoid(),
+      spendFrom: 'martin',
+      moneyFor,
+      amountOfMoney,
+      payDate,
+      splits,
+    }
+
+    addSpend(newSpend)
     router.push('/')
   }
 

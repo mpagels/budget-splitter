@@ -1,27 +1,25 @@
 import Link from 'next/link'
 import styled from 'styled-components'
 
-export default function Home() {
+export default function Home({ spends }) {
   return (
     <HomeWrapper>
       <Link href="/add">
         <a>+</a>
       </Link>
       <SpendList>
-        <SpendItem>
-          <Infos>
-            <h2>Tanken</h2>
-            <Money isMe={false}>25,00 €</Money>
-          </Infos>
-          <p>28.6</p>
-        </SpendItem>
-        <SpendItem>
-          <Infos>
-            <h2>Abendessen für alle</h2>
-            <Money isMe>45,00 €</Money>
-          </Infos>
-          <p>28.6</p>
-        </SpendItem>
+        {spends.map((spend) => {
+          return (
+            <SpendItem key={spend.id}>
+              <Infos>
+                <h2>{spend.moneyFor}</h2>
+                <p>{spend.amountOfMoney} €</p>
+              </Infos>
+              <h3>Bezahlt von: {spend.spendFrom}</h3>
+              <p>{spend.payDate}</p>
+            </SpendItem>
+          )
+        })}
       </SpendList>
       <Footer>
         <CalculatedBudget>20€</CalculatedBudget>
@@ -50,10 +48,6 @@ const CalculatedBudget = styled.p`
   text-align: center;
   color: green;
   font-size: 2em;
-`
-
-const Money = styled.p`
-  color: ${({ isMe }) => (isMe ? 'green' : 'red')};
 `
 
 const SpendItem = styled.li`
