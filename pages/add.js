@@ -38,6 +38,8 @@ export default function Add({ addSpend }) {
     setSplit(updatedSplit)
   }
 
+  const isReadyToSave = checkIsReadyToSave()
+
   return (
     <Form onSubmit={saveSpend}>
       <label>Ausgabe für:</label>
@@ -111,7 +113,9 @@ export default function Add({ addSpend }) {
         +
       </button>
 
-      <button>speichern</button>
+      <SaveButton disabled={!isReadyToSave} isReadyToSave={isReadyToSave}>
+        speichern
+      </SaveButton>
       <button type="button" onClick={resetAll}>
         alles löschen
       </button>
@@ -147,6 +151,15 @@ export default function Add({ addSpend }) {
   function dontSaveAndGoBack() {
     router.push('/')
   }
+
+  function checkIsReadyToSave() {
+    return (
+      moneyFor.trim().length > 0 &&
+      amountOfMoney > 0 &&
+      payDate.length > 0 &&
+      splits.length > 0
+    )
+  }
 }
 
 const SplitItem = styled.li``
@@ -154,4 +167,8 @@ const SplitItem = styled.li``
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+`
+
+const SaveButton = styled.button`
+  ${(props) => props.isReadyToSave && 'background-color: green;'}
 `
