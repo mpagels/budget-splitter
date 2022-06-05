@@ -41,13 +41,13 @@ export default function Add() {
             <SplitItem key={split.id}>
               <select name="names" id="name" value={split.nameVaule}>
                 <option value="martin">Martin</option>
-                <option value="Jana">Jana</option>
-                <option value="Lene">Lene</option>
+                <option value="jana">Jana</option>
+                <option value="lene">Lene</option>
               </select>
               <input type="number" min={1}></input>
               <select name="whichMoney" id="money">
                 <option value="martin">Martin</option>
-                <option value="Jana">Jana</option>
+                <option value="jana">Jana</option>
                 <option value="together">gemeinsam</option>
               </select>
               <button type="button" onClick={() => deleteSplit(split.id)}>
