@@ -27,32 +27,10 @@ export default function Add() {
     setSplit(updatedSplit)
   }
 
-  function handleOnChangeNames(id, nameValue) {
+  function handleSplitChangeByType(id, value, type) {
     const updatedSplit = splits.map((split) => {
       if (split.id === id) {
-        return { ...split, nameValue }
-      } else {
-        return split
-      }
-    })
-    setSplit(updatedSplit)
-  }
-
-  function handleOnChangeNumber(id, number) {
-    const updatedSplit = splits.map((split) => {
-      if (split.id === id) {
-        return { ...split, number }
-      } else {
-        return split
-      }
-    })
-    setSplit(updatedSplit)
-  }
-
-  function handleOnChangeMoney(id, moneyValue) {
-    const updatedSplit = splits.map((split) => {
-      if (split.id === id) {
-        return { ...split, moneyValue }
+        return { ...split, [type]: value }
       } else {
         return split
       }
@@ -95,7 +73,7 @@ export default function Add() {
                 value={split.nameVaule}
                 defaultValue={split.nameValue}
                 onChange={({ target: { value } }) =>
-                  handleOnChangeNames(split.id, value)
+                  handleSplitChangeByType(split.id, value, 'nameValue')
                 }
               >
                 <option value="martin">Martin</option>
@@ -107,7 +85,7 @@ export default function Add() {
                 min={1}
                 value={split.number}
                 onChange={({ target: { value } }) =>
-                  handleOnChangeNumber(split.id, value)
+                  handleSplitChangeByType(split.id, value, 'number')
                 }
               ></input>
               <select
@@ -115,7 +93,7 @@ export default function Add() {
                 id="money"
                 value={split.moneyValue}
                 onChange={({ target: { value } }) =>
-                  handleOnChangeMoney(split.id, value)
+                  handleSplitChangeByType(split.id, value, 'moneyValue')
                 }
               >
                 <option value="martin">Martin</option>
