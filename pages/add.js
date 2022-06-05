@@ -62,11 +62,19 @@ export default function Add() {
       </button>
 
       <button>speichern</button>
+      <button>alles löschen</button>
+      <button type="button" onClick={dontSaveAndGoBack}>
+        alles verwerfen und zurück
+      </button>
     </Form>
   )
 
   function saveSpend(event) {
     event.preventDefault()
+    router.push('/')
+  }
+
+  function dontSaveAndGoBack() {
     router.push('/')
   }
 }
