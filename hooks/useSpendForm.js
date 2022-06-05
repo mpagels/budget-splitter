@@ -40,7 +40,7 @@ export default function useSpendForm(addSpend) {
   function resetAll() {
     setMoneyFor('')
     setAmountOfMoney(0)
-    seetPayDate('')
+    setPayDate('')
     setSplit([])
   }
 
