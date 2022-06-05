@@ -112,12 +112,21 @@ export default function Add() {
       </button>
 
       <button>speichern</button>
-      <button>alles löschen</button>
+      <button type="button" onClick={resetAll}>
+        alles löschen
+      </button>
       <button type="button" onClick={dontSaveAndGoBack}>
         alles verwerfen und zurück
       </button>
     </Form>
   )
+
+  function resetAll() {
+    setMoneyFor('')
+    setAmountOfMoney(0)
+    seetPayDate('')
+    setSplit([])
+  }
 
   function saveSpend(event) {
     event.preventDefault()
