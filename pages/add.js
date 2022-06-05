@@ -1,9 +1,22 @@
 import styled from 'styled-components'
 import { useRouter } from 'next/router'
+import { nanoid } from 'nanoid'
+import { useState } from 'react'
 
 export default function Add() {
   const router = useRouter()
 
+  const [splits, setSplit] = useState([])
+
+  function addNewSplit() {
+    const newSplit = {
+      id: nanoid(),
+      nameValue: 'martin',
+      number: 1,
+      moneyValue: 'martin',
+    }
+    setSplit([...splits, newSplit])
+  }
   return (
     <Form onSubmit={saveSpend}>
       <label>Ausgabe für:</label>
@@ -17,21 +30,27 @@ export default function Add() {
 
       <h2>Aufteilung</h2>
       <ul>
-        <SplitItem>
-          <select name="names" id="name">
-            <option value="martin">Martin</option>
-            <option value="Jana">Jana</option>
-            <option value="Lene">Lene</option>
-          </select>
-          <input type="number" min={1}></input>
-          <select name="whichMoney" id="money">
-            <option value="martin">Martin</option>
-            <option value="Jana">Jana</option>
-            <option value="together">gemeinsam</option>
-          </select>
-        </SplitItem>
+        {splits.map((split) => {
+          return (
+            <SplitItem key={split.id}>
+              <select name="names" id="name" value={split.nameVaule}>
+                <option value="martin">Martin</option>
+                <option value="Jana">Jana</option>
+                <option value="Lene">Lene</option>
+              </select>
+              <input type="number" min={1}></input>
+              <select name="whichMoney" id="money">
+                <option value="martin">Martin</option>
+                <option value="Jana">Jana</option>
+                <option value="together">gemeinsam</option>
+              </select>
+            </SplitItem>
+          )
+        })}
       </ul>
-      <button type="button">+</button>
+      <button type="button" onClick={addNewSplit}>
+        +
+      </button>
 
       <button>speichern</button>
     </Form>
