@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { nanoid } from 'nanoid'
 import { useState } from 'react'
 
-export default function useSpendForm(addSpend) {
+export default function useSpendForm(addSpend, account) {
   const router = useRouter()
 
   const [moneyFor, setMoneyFor] = useState('')
@@ -49,7 +49,7 @@ export default function useSpendForm(addSpend) {
 
     const newSpend = {
       id: nanoid(),
-      spendFrom: 'martin',
+      spendFrom: account,
       moneyFor,
       amountOfMoney,
       payDate,

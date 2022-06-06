@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import useSpendForm from '../hooks/useSpendForm'
 
-export default function Add({ addSpend }) {
+export default function Add({ addSpend, account }) {
   const {
     moneyFor,
     setMoneyFor,
@@ -17,7 +17,7 @@ export default function Add({ addSpend }) {
     saveSpend,
     dontSaveAndGoBack,
     checkIsReadyToSave,
-  } = useSpendForm(addSpend)
+  } = useSpendForm(addSpend, account)
 
   const isReadyToSave = checkIsReadyToSave()
   return (
