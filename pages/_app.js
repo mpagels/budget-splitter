@@ -1,11 +1,13 @@
 import { GlobalStyles } from '../GlobalStyles'
 import { useState } from 'react'
 
+const CURRENTACCOUNT = 'jana'
+
 function MyApp({ Component, pageProps }) {
   const [spends, setSpends] = useState([
     {
       id: 1,
-      spendFrom: 'Martin',
+      spendFrom: 'martin',
       moneyFor: 'Tanken',
       amountOfMoney: 70,
       payDate: '2022-05-22',
@@ -20,7 +22,7 @@ function MyApp({ Component, pageProps }) {
     },
     {
       id: 2,
-      spendFrom: 'Jana',
+      spendFrom: 'jana',
       moneyFor: 'Abendessen',
       amountOfMoney: 70,
       payDate: '2022-05-23',
@@ -54,7 +56,13 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <GlobalStyles />
-      <Component {...pageProps} spends={spends} addSpend={addSpend} />;
+      <Component
+        {...pageProps}
+        spends={spends}
+        addSpend={addSpend}
+        account={CURRENTACCOUNT}
+      />
+      ;
     </>
   )
 }
