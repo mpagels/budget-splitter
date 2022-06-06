@@ -22,11 +22,13 @@
 export default function calculateSplits(splits, account) {
   return splits.reduce((prev, cur) => {
     if (cur.moneyValue === 'together') {
-      return prev + cur.number / 2
+      return account === cur.nameValue
+        ? prev + cur.number / 2
+        : prev - cur.number / 2
     }
 
     if (cur.moneyValue === account) {
-      return prev + cur.number
+      return prev - cur.number
     }
 
     return prev
