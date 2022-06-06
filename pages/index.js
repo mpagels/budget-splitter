@@ -3,6 +3,10 @@ import styled from 'styled-components'
 import calculateSplits from '../utils/calculateSplits'
 
 export default function Home({ spends, account }) {
+  const grandTotal = spends.reduce((prev, cur) => {
+    return prev + calculateSplits(cur.splits, cur.spendFrom, account)
+  }, 0)
+
   return (
     <HomeWrapper>
       <Link href="/add">
@@ -29,7 +33,9 @@ export default function Home({ spends, account }) {
         })}
       </SpendList>
       <Footer>
-        <CalculatedBudget>20€</CalculatedBudget>
+        <CalculatedBudget isPositive={grandTotal >= 0}>
+          {grandTotal}€
+        </CalculatedBudget>
       </Footer>
     </HomeWrapper>
   )
@@ -53,7 +59,7 @@ const Footer = styled.footer`
 
 const CalculatedBudget = styled.p`
   text-align: center;
-  color: green;
+  color: ${(prop) => (prop.isPositive ? 'green' : 'red')};
   font-size: 2em;
 `
 
