@@ -19,18 +19,35 @@
     },
   ], */
 
-export default function calculateSplits(splits, account) {
+export default function calculateSplits(splits, spendFrom, account) {
   return splits.reduce((prev, cur) => {
+    if (
+      spendFrom === account &&
+      cur.nameValue === cur.moneyValue &&
+      spendFrom !== cur.moneyValue
+    ) {
+      return prev + cur.number
+    }
+
+    if (spendFrom === account && cur.nameValue === cur.moneyValue) {
+      return prev
+    }
     if (cur.moneyValue === 'together') {
-      return account === cur.nameValue
+      return account === spendFrom
         ? prev + cur.number / 2
         : prev - cur.number / 2
     }
 
-    if (cur.moneyValue === account) {
-      return prev - cur.number
+    if (spendFrom === cur.nameValue && spendFrom === cur.moneyValue) {
+      return prev
     }
 
-    return prev
+    if (
+      spendFrom !== account &&
+      cur.nameValue === cur.moneyValue &&
+      cur.moneyValue !== 'together'
+    ) {
+      return prev - cur.number
+    }
   }, 0)
 }
