@@ -9,9 +9,13 @@ export default function Home({ spends, account }) {
 
   return (
     <HomeWrapper>
-      <Link href="/add">
-        <a>+</a>
-      </Link>
+      <Header>
+        <Link href="/add">
+          <a>+</a>
+        </Link>
+        <span>Budget-Splitter</span>
+        Hi {account.charAt(0).toUpperCase() + account.slice(1)}
+      </Header>
       <SpendList>
         {spends.map((spend) => {
           const owe = calculateSplits(spend.splits, spend.spendFrom, account)
@@ -32,6 +36,7 @@ export default function Home({ spends, account }) {
           )
         })}
       </SpendList>
+      <pre>{JSON.stringify(spends, null, 2)}</pre>
       <Footer>
         <CalculatedBudget isPositive={grandTotal >= 0}>
           {grandTotal}€
@@ -40,6 +45,14 @@ export default function Home({ spends, account }) {
     </HomeWrapper>
   )
 }
+
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  padding: 0 20px;
+`
 
 const HomeWrapper = styled.main`
   height: 100vh;
@@ -71,6 +84,7 @@ const SpendItem = styled.li`
 const SpendList = styled.ul`
   list-style-type: none;
   padding: 0;
+  margin: 0;
 `
 
 const UserOwe = styled.p`
