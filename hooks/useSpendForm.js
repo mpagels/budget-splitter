@@ -69,7 +69,8 @@ export default function useSpendForm(addSpend, account) {
       moneyFor.trim().length > 0 &&
       amountOfMoney > 0 &&
       payDate.length > 0 &&
-      splits.length > 0
+      splits.length > 0 &&
+      splits.some((split) => split.number > 0)
     )
   }
 
