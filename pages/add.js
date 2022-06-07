@@ -93,7 +93,7 @@ export default function Add({ addSpend, account }) {
           )
         })}
       </ul>
-      <button type="button" onClick={addNewSplit}>
+      <button type="button" onClick={addNewSplit} disabled={amountOfMoney <= 0}>
         +
       </button>
 
