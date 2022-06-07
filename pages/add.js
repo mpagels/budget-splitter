@@ -34,7 +34,7 @@ export default function Add({ addSpend, account }) {
         type="number"
         min={1}
         value={amountOfMoney}
-        onChange={({ target: { value } }) => setAmountOfMoney(value)}
+        onChange={({ target: { value } }) => setAmountOfMoney(Number(value))}
       ></input>
 
       <label>Wann:</label>

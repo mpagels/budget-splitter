@@ -29,7 +29,8 @@ export default function useSpendForm(addSpend, account) {
   function handleSplitChangeByType(id, value, type) {
     const updatedSplit = splits.map((split) => {
       if (split.id === id) {
-        return { ...split, [type]: value }
+          return { ...split, [type]: type === 'number' ? Number(value) : value }
+        }
       } else {
         return split
       }
