@@ -78,8 +78,12 @@ export default function Add({ addSpend, account }) {
                   handleSplitChangeByType(split.id, value, 'moneyValue')
                 }
               >
-                <option value="martin">Martin</option>
-                <option value="jana">Jana</option>
+                <option value="martin" disabled={split.nameValue === 'lene'}>
+                  Martin
+                </option>
+                <option value="jana" disabled={split.nameValue === 'lene'}>
+                  Jana
+                </option>
                 <option value="together">gemeinsam</option>
               </select>
               <button type="button" onClick={() => deleteSplit(split.id)}>
