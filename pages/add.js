@@ -10,6 +10,7 @@ export default function Add({ addSpend, account }) {
     payDate,
     setPayDate,
     splits,
+    distributedMoney,
     addNewSplit,
     deleteSplit,
     handleSplitChangeByType,
@@ -44,7 +45,14 @@ export default function Add({ addSpend, account }) {
         onChange={({ target: { value } }) => setPayDate(value)}
       ></input>
 
-      <h2>Aufteilung</h2>
+      <h2>
+        Aufteilung{' '}
+        {(distributedMoney > 0 || splits.length > 0) && (
+          <DistributedMoney isEven={distributedMoney === 0}>
+            noch {distributedMoney}
+          </DistributedMoney>
+        )}
+      </h2>
       <ul>
         {splits.map((split) => {
           return (
@@ -109,6 +117,10 @@ export default function Add({ addSpend, account }) {
     </Form>
   )
 }
+
+const DistributedMoney = styled.span`
+  color: ${(prop) => (prop.isEven ? 'green' : 'red')};
+`
 
 const SplitItem = styled.li``
 

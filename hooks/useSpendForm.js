@@ -11,6 +11,9 @@ export default function useSpendForm(addSpend, account) {
 
   const [splits, setSplit] = useState([])
 
+  const distributedMoney =
+    amountOfMoney - splits.reduce((prev, cur) => prev + cur.number, 0)
+
   function addNewSplit() {
     const newSplit = {
       id: nanoid(),
@@ -74,6 +77,7 @@ export default function useSpendForm(addSpend, account) {
       amountOfMoney > 0 &&
       payDate.length > 0 &&
       splits.length > 0 &&
+      distributedMoney === 0 &&
       splits.some((split) => split.number > 0)
     )
   }
@@ -86,6 +90,7 @@ export default function useSpendForm(addSpend, account) {
     payDate,
     setPayDate,
     splits,
+    distributedMoney,
     addNewSplit,
     deleteSplit,
     handleSplitChangeByType,
